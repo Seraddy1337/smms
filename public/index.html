@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入elementui.css -->
+    <link rel="stylesheet" href="./libs/elementui/css/elementui.min.css">
+    <!-- 引入index.css -->
+    <link rel="stylesheet" href="./styles/index.css">
+    <!-- 引入vue.js -->
+    <script src="./libs/vue/vue.min.js"></script>
+    <!-- 引入elementui.js -->
+    <script src="./libs/elementui/js/elementui.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <el-container>
+            <!-- 左侧边栏 -->
+            <el-aside width="200px">
+                <h2>华联超市管理系统</h2>
+                <p>你好 admin</p>
+                <p><a href="./index.html">管理首页</a> | <a href="./login.html">退出系统</a></p>
+                <el-menu :unique-opened="true" default-active="5-1" class="el-menu-vertical-demo">
+                    <el-submenu index="1">
+                        <template slot="title">
+                            <i class="el-icon-star-on"></i>
+                            <span>账号管理</span>
+                        </template>
+                        <el-menu-item-group>
+                            <a href="./addUser.html"><el-menu-item index="1-1">添加账号</el-menu-item></a>
+                            <el-menu-item index="1-2">账号列表</el-menu-item>
+                            <el-menu-item index="1-3">密码修改</el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                    <el-submenu index="2">
+                        <template slot="title">
+                            <i class="el-icon-goods"></i>
+                            <span>商品管理</span>
+                        </template>
+                        <el-menu-item-group>
+                            <el-menu-item index="2-1">添加商品</el-menu-item>
+                            <el-menu-item index="2-2">商品列表</el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                    <el-submenu index="3">
+                        <template slot="title">
+                            <i class="el-icon-download"></i>
+                            <span>进货管理</span>
+                        </template>
+                        <el-menu-item-group>
+                            <el-menu-item index="3-1">添加库存</el-menu-item>
+                            <el-menu-item index="3-2">库存列表</el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                    <el-submenu index="4">
+                        <template slot="title">
+                            <i class="el-icon-upload2"></i>
+                            <span>出货管理</span>
+                        </template>
+                        <el-menu-item-group>
+                            <el-menu-item index="4-1">销售列表</el-menu-item>
+                            <el-menu-item index="4-2">商品出库</el-menu-item>
+                            <el-menu-item index="4-2">商品退货</el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                    <el-submenu index="5">
+                        <template slot="title">
+                            <i class="el-icon-menu"></i>
+                            <span>系统管理</span>
+                        </template>
+                        <el-menu-item-group>
+                            <el-menu-item index="5-1">系统管理</el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                </el-menu>
+            </el-aside>
+            <!-- 右侧内容 -->
+            <el-container>
+                <!-- 右侧头部 -->
+                <el-header>
+                    <h2>欢迎您 admin</h2>
+                    <p>查看详细的系统信息</p>
+                </el-header>
+                <!-- 右侧主体 -->
+                <el-main>
+                    <el-card class="box-card">
+                        <div slot="header" class="clearfix">
+                            <h3>系统信息</h3>
+                        </div>
+                        <div class="text item">
+                            <el-alert title="成功提示的文案" type="success">
+                            </el-alert>
+                            <el-alert title="消息提示的文案" type="info">
+                            </el-alert>
+                        </div>
+                        <!-- 内部卡片布局 -->
+                        <el-row :gutter="20">
+                            <!-- 左侧卡片 -->
+                            <el-col :span="12">
+                                <div class="grid-content bg-purple">
+                                    <el-card class="box-card">
+                                        <div slot="header" class="clearfix">
+                                            <h3>销售排行</h3>
+                                        </div>
+                                        <div class="text item">
+                                            <el-table :data="tableData" stripe style="width: 100%">
+                                                <el-table-column prop="name" label="商品名称">
+                                                </el-table-column>
+                                                <el-table-column prop="date" label="时间">
+                                                </el-table-column>
+                                                <el-table-column prop="sale" label="销量">
+                                                </el-table-column>
+                                            </el-table>
+                                            </template>
+                                        </div>
+                                    </el-card>
+                                </div>
+                            </el-col>
+                            <!-- 右侧卡片 -->
+                            <el-col :span="12">
+                                <div class="grid-content bg-purple">
+                                    <el-card class="box-card">
+                                        <div slot="header" class="clearfix">
+                                            <h3>缺货商品</h3>
+                                        </div>
+                                        <div class="text item">
+                                            <el-table :data="tableData" stripe style="width: 100%">
+                                                <el-table-column prop="name" label="名称">
+                                                </el-table-column>
+                                                <el-table-column prop="saveNum" label="库存">
+                                                </el-table-column>
+                                                <el-table-column prop="data" label="时间">
+                                                </el-table-column>
+                                            </el-table>
+                                            </template>
+                                        </div>
+                                    </el-card>
+                                </div>
+                            </el-col>
+                        </el-row>
+                    </el-card>
+                </el-main>
+                <!-- 右侧脚部 -->
+                <el-footer>
+                    <p>&copy;Copyright 2018 华联超市管理系统</p>
+                </el-footer>
+            </el-container>
+        </el-container>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    tableData: [{
+                        date: '2016-05-02',
+                        name: '受委屈',
+                        sale: '8'
+                    }, {
+                        date: '2016-05-04',
+                        name: '受委屈',
+                        sale: '8'
+                    }]
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

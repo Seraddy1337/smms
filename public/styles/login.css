@@ -1,0 +1,28 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+html,body{
+    height: 100%;
+}
+#app{
+    height: 100%;
+    background-image: url("../images/0a7c7c300e1ff1c6dd3c3d48185cf492.jpg");
+    position: relative;
+}
+#loginBox{
+    width: 400px;
+    height: 300px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: #fff;
+    padding-right: 40px;
+    border-radius: 8px;
+}
+#loginBox h2{
+    margin: 15px 20px 15px 40px;
+}
